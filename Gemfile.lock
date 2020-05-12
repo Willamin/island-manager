@@ -176,7 +176,6 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   rails (~> 6.0.3)
   selenium-webdriver
-  tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
 
