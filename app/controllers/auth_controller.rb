@@ -13,8 +13,10 @@ class AuthController < ApplicationController
 
   def add_cookie
     if t = Token.find_by_id(params[:token_id])
-      session[:current_user] = t.user
-      redirect_to session[:user_return_to]
+      session[:current_token_id] = t.id
+      return_to = session[:user_return_to]
+      session[:user_return_to] = nil
+      redirect_to(return_to || :root)
     else
       flash[:alert] = "Invalid token"
       redirect_to :root
@@ -22,7 +24,7 @@ class AuthController < ApplicationController
   end
 
   def remove_cookie
-    session[:current_user] = nil
+    session[:current_token_id] = nil
     redirect_to :root
   end
 
