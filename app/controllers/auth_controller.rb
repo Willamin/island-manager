@@ -13,7 +13,12 @@ class AuthController < ApplicationController
 
   def add_cookie
     if t = Token.find_by_id(params[:token_id])
-      session[:current_token_id] = t.id
+
+      cookies.signed[:current_token_id] = {
+       :value => t.id,
+       :expires => 30.days
+      }
+
       return_to = session[:user_return_to]
       session[:user_return_to] = nil
       redirect_to(return_to || :root)
@@ -24,7 +29,7 @@ class AuthController < ApplicationController
   end
 
   def remove_cookie
-    session[:current_token_id] = nil
+    cookies.delete(:current_token_id)
     redirect_to :root
   end
 
