@@ -12,20 +12,35 @@ class AuthController < ApplicationController
   end
 
   def add_cookie
-    if t = Token.find_by_id(params[:token_id])
-
-      cookies.signed[:current_token_id] = {
-       :value => t.id,
-       :expires => 30.days
-      }
-
-      return_to = session[:user_return_to]
-      session[:user_return_to] = nil
-      redirect_to(return_to || :root)
-    else
-      flash[:alert] = "Invalid token"
-      redirect_to :root
+    unless emailed_token = Token.find_by_id(params[:token_id])
+      raise BadAuthTokenError
     end
+
+    if emailed_token.is_consumed?
+      raise BadAuthTokenError
+    end
+
+    if emailed_token.created_at.before? 1.hour.ago
+      raise BadAuthTokenError
+    end
+
+    emailed_token.is_consumed = true
+    user = emailed_token.user
+
+    new_token = Token.create(user_id: user.id)
+
+    cookies.signed[:current_token_id] = {
+     :value => new_token.id,
+     :expires => 30.days
+    }
+
+    return_to = session[:user_return_to]
+    session[:user_return_to] = nil
+    flash[:notice] = "Welcome, #{user.name || user.email}"
+    redirect_to(return_to || :root)
+  rescue BadAuthTokenError
+    flash[:alert] = "Invalid token"
+    redirect_to :root
   end
 
   def remove_cookie
@@ -36,3 +51,5 @@ class AuthController < ApplicationController
   def logout
   end
 end
+
+class BadAuthTokenError < StandardError; end
