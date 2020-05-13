@@ -5,7 +5,9 @@ class AuthController < ApplicationController
     u = User.find_or_create_by(email: email)
     t = u.create_token
 
-    flash[:notice] = "We sent a login email to #{email}. Visit /login/#{t.id}"
+    TokenMailer.with(token: t).login_email.deliver_later
+
+    flash[:notice] = "We sent a login email to that address."
     redirect_to :root
   end
 
