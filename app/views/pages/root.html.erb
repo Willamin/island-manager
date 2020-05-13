@@ -9,5 +9,12 @@
 <%= form_with(url: "/login", method: "post") do %>
   <label for="email">Sign-in / Sign-up here with your email here</label>
   <input required type="email" name="email" id="email" />
+  <br />
   <button type="submit">Login</button>
+<% end %>
+
+<br />
+
+<%= form_with(url: "/logout", method: "post") do %>
+  <button type="submit">Logout</button>
 <% end %>
