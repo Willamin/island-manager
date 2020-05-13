@@ -2,6 +2,12 @@
 <p>
   Currently implemented features:
   <ul>
-    <li>Static pages: root, about</li>
+    <li>Static pages: <a href="/">root</a>, <a href="/about">about</a>, <a href="/secret">secret</a></li>
   </ul>
 </p>
+
+<%= form_with(url: "/login", method: "post") do %>
+  <label for="email">Sign-in / Sign-up here with your email here</label>
+  <input required type="email" name="email" id="email" />
+  <button type="submit">Login</button>
+<% end %>
