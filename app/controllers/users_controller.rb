@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user.character_name = params[:character_name]
     @user.save!
 
-    flash[:success] = "You've successfully updated your profile."
+    flash[:dingus] = "You've successfully updated your profile."
     redirect_to "/user/me"
   end
 end

@@ -14,37 +14,86 @@
  *= require_self
  */
 
-:root {
-  --background: #88C9A1;
-  --foreground: #444;
-  --border: #69B994;
-  --red: rgb(255, 59, 48);
-  --blue: rgb(0, 122, 255);
-  --green: rgb(52, 199, 89);
-  --yellow: rgb(255, 204, 0);
+ :root {
+  --bg-0: #e9f5eb;
+  --bg-1: #d8f1e1;
+  --bg-2: #a5d5a5;
+
+  --fg-1: rgba(0, 0, 0, 0.9);
+  --fg-2: rgba(0, 0, 0, 0.9);
+
+  --widget-0: #ef8341;
+  --widget-1: rgba(0, 0, 0, 0.9);
+
+  --gizmo-0: #f0e16f;
+  --gizmo-1: rgba(0, 0, 0, 0.9);
+
+  --dingus-0: #88c9a1;
+  --dingus-1: rgba(0, 0, 0, 0.9);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #297B56;
-    --foreground: #fefefe;
-    --border: #69B994;
-    --red: rgb(255, 69, 58);
-    --blue: rgb(10, 132, 255);
-    --green: rgb(48, 209, 88);
-    --yellow: rgb(255, 214, 10);
+@media (prefers-color-scheme: dark) { :root {
+  --bg-0: #7b6c53;
+  --bg-1: #9a8e79;
+  --bg-2: #aca391;
+
+  --fg-1: rgba(0, 0, 0, 0.9);
+  --fg-2: rgba(0, 0, 0, 0.9);
+
+  --widget-0: #ef8341;
+  --widget-1: rgba(0, 0, 0, 0.9);
+
+  --gizmo-0: #f0e16f;
+  --gizmo-1: rgba(0, 0, 0, 0.9);
+
+  --dingus-0: #88c9a1;
+  --dingus-1: rgba(0, 0, 0, 0.9);
+} }
+
+.level-0 {
+  background-color: var(--bg-0);
+}
+
+.level-1 {
+  background-color: var(--bg-1);
+  color: var(--fg-1);
+  border-color: var(--fg-1);
+}
+
+.level-2 {
+  background-color: var(--bg-2);
+  color: var(--fg-2);
+  border-color: var(--fg-2);
+}
+
+/* ------------------------------------ */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  line-height: 1.6em;
+  font-size: 16px;
+  font-family: sans-serif, OpenMoji;
+  padding: 2em;
+  padding-top: 1.5em;
+  border-radius: 10px;
+  margin: 2em auto 30vh;
+  max-width: 800px;
+  transition: margin 0.1s;
+}
+
+@media (max-width: calc(800px + 4em)) {
+  main {
+    margin-top: 0;
+    border-radius: 0;
   }
 }
 
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  border-color: var(--border);
-}
-
 code {
-  border-color: var(--border);
+  border-color: var(--fg-1);
 }
 
 a:link, a:visited {
@@ -64,26 +113,6 @@ button:hover {
 @font-face {
   font-family: OpenMoji;
   src: url(OpenMoji-Black.ttf);
-}
-
-body {
-  line-height: 1.6em;
-  font-size: 16px;
-  font-family: sans-serif, OpenMoji;
-  padding: 2em;
-  padding-top: 1.5em;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 5px;
-  margin: 2em auto 30vh;
-  max-width: 800px;
-  transition: margin 0.1s, border-color 0.1s;
-}
-@media (max-width: calc(800px + 4em)) {
-  body {
-    margin-top: 0;
-    border-color: transparent;
-  }
 }
 
 h1, h2, h3 {
@@ -119,26 +148,32 @@ button:hover {
 }
 
 .flash {
-  padding: 2px 8px;
-  border-width: 1px;
-  border-style: solid;
+  font-family: sans-serif, OpenMoji;
+  margin: 2em auto 0;
+  padding: 1em 2em;
   border-radius: 5px;
-  border-color: var(--foreground);
-  color: var(--foreground);
+  max-width: 800px;
+  transition: margin 0.1s;
 }
 
-.flash.success {
-  border-color: var(--green);
+@media (max-width: calc(800px + 4em)) {
+  .flash {
+    margin: 0;
+    border-radius: 0;
+  }
 }
 
-.flash.danger {
-  border-color: var(--red);
+.flash.dingus {
+  background-color: var(--dingus-0);
+  color: var(--dingus-1);
 }
 
-.flash.warning {
-  border-color: var(--yellow);
+.flash.widget {
+  background-color: var(--widget-0);
+  color: var(--widget-1);
 }
 
-.flash.info {
-  border-color: var(--blue);
+.flash.gizmo {
+  background-color: var(--gizmo-0);
+  color: var(--gizmo-1);
 }

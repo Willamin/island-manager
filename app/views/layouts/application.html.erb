@@ -10,10 +10,12 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
 
-  <body>
+  <body class="level-0">
     <% flash.each do |key, value| %>
-      <p class="flash <%= key %>"><%= value %></p>
+      <div class="flash <%= key %>"><%= value %></div>
     <% end %>
+    <main class="level-1">
     <%= yield %>
+    </main>
   </body>
 </html>
