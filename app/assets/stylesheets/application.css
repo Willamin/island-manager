@@ -30,6 +30,8 @@
 
   --dingus-0: #88c9a1;
   --dingus-1: rgba(0, 0, 0, 0.9);
+
+  --accent: #7CC9C3;
 }
 
 @media (prefers-color-scheme: dark) { :root {
@@ -48,6 +50,8 @@
 
   --dingus-0: #88c9a1;
   --dingus-1: rgba(0, 0, 0, 0.9);
+
+  --accent: #FDD10A;
 } }
 
 .level-0 {
@@ -100,6 +104,10 @@ a:link, a:visited {
   color: var(--foreground);
 }
 
+a:hover::before {
+  background-color: var(--accent);
+}
+
 button {
   border-color: var(--border);
   color: var(--foreground);
@@ -134,17 +142,17 @@ pre > code {
 }
 
 button {
-  background-color: transparent;
-  border-width: 1px;
-  border-style: solid;
+  background-color: var(--accent);
+  border: none;
   border-radius: 5px;
-  padding: 2px 8px;
+  padding: 0.5em 1em;
   font-size: 16px;
   font-family: sans-serif, OpenMoji;
 }
 
 button:hover {
   cursor: pointer;
+  background-color: var(--accent);
 }
 
 .flash {
