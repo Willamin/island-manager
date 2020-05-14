@@ -18,6 +18,10 @@
   --background: #fefefe;
   --foreground: #444;
   --border: lightgray;
+  --red: rgb(255, 59, 48);
+  --blue: rgb(0, 122, 255);
+  --green: rgb(52, 199, 89);
+  --yellow: rgb(255, 204, 0);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,6 +29,10 @@
     --background: #444;
     --foreground: #fefefe;
     --border: lightgray;  
+    --red: rgb(255, 69, 58);
+    --blue: rgb(10, 132, 255);
+    --green: rgb(48, 209, 88);
+    --yellow: rgb(255, 214, 10);
   }
 }
 
@@ -106,4 +114,29 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+.flash {
+  padding: 2px 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: var(--foreground);
+  color: var(--foreground);
+}
+
+.flash.success {
+  border-color: var(--green);
+}
+
+.flash.danger {
+  border-color: var(--red);
+}
+
+.flash.warning {
+  border-color: var(--yellow); 
+}
+
+.flash.info {
+  border-color: var(--blue);
 }

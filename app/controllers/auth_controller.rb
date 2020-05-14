@@ -7,13 +7,13 @@ class AuthController < ApplicationController
 
     TokenMailer.with(token: t).login_email.deliver_now
 
-    flash[:notice] = "We sent a login email to that address."
+    flash[:info] = "We sent a login email to that address."
     redirect_to :root
   end
 
   def authenticate
     unless emailed_token = Token.where(id: params[:token_id], created_at: 1.hour.ago..Time.current).first
-      flash[:alert] = "Invalid token"
+      flash[:warning] = "Invalid token"
       redirect_to :root
       return
     end
@@ -27,16 +27,16 @@ class AuthController < ApplicationController
 
     return_to = session[:user_return_to]
     session[:user_return_to] = nil
-    flash[:notice] = "Welcome, #{user.name || user.email}"
+    flash[:info] = "Welcome, #{user.name || user.email}"
     redirect_to(return_to || :root)
   end
 
   def logout
     if current_user
       cookies.delete(:user_id)
-      flash[:notice] = "Successfully logged out"
+      flash[:success] = "Successfully logged out"
     else
-      flash[:notice] = "Already logged out"
+      flash[:warning] = "Already logged out"
     end
     redirect_to :root
   end

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_auth_failure
-    flash[:alert] = "You must be signed in to view this page"
+    flash[:danger] = "You must be signed in to view this page"
     session[:user_return_to] = request.path
     redirect_to :root
   end
