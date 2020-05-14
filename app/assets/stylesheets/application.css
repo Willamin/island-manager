@@ -28,6 +28,15 @@ a:link, a:visited {
   color: #444;
 }
 
+button {
+  color: #444;
+}
+
+button:hover {
+  background-color: #444;
+  color: #fefefe;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #444;
@@ -41,6 +50,15 @@ a:link, a:visited {
 
   a:link, a:visited {
     color: #fefefe;
+  }
+
+  button {
+    color: #fefefe;
+  }
+
+  button:hover {
+    background-color: #fefefe;
+    color: #444;
   }
 }
 
@@ -84,4 +102,18 @@ code {
 
 pre > code {
   display: block;
+}
+
+button {
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 2px 8px;
+  font-size: 16px;
+  font-family: sans-serif, OpenMoji;
+}
+
+button:hover {
+  cursor: pointer;
 }
