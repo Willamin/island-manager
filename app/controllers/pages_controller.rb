@@ -4,9 +4,4 @@ class PagesController < ApplicationController
 
   def about
   end
-
-  def secret
-    ensure_authentication
-    @user = User.find(current_user["id"])
-  end
 end
