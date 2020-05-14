@@ -15,9 +15,9 @@
  */
 
 :root {
-  --background: #fefefe;
+  --background: #88C9A1;
   --foreground: #444;
-  --border: lightgray;
+  --border: #69B994;
   --red: rgb(255, 59, 48);
   --blue: rgb(0, 122, 255);
   --green: rgb(52, 199, 89);
@@ -26,9 +26,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #444;
+    --background: #297B56;
     --foreground: #fefefe;
-    --border: lightgray;  
+    --border: #69B994;
     --red: rgb(255, 69, 58);
     --blue: rgb(10, 132, 255);
     --green: rgb(48, 209, 88);
@@ -52,6 +52,7 @@ a:link, a:visited {
 }
 
 button {
+  border-color: var(--border);
   color: var(--foreground);
 }
 
@@ -88,6 +89,7 @@ body {
 h1, h2, h3 {
   line-height: 1.2;
   margin: 0;
+  font-family: "Zilla Slab", OpenMoji, serif;
 }
 
 code {
@@ -134,7 +136,7 @@ button:hover {
 }
 
 .flash.warning {
-  border-color: var(--yellow); 
+  border-color: var(--yellow);
 }
 
 .flash.info {
