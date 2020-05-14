@@ -8,4 +8,8 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'auth#logout'
   post '/logout', to: 'auth#remove_cookie'
+
+  post '/user', to: 'users#update'
+  get '/user/me', to: 'users#me'
+  get '/user/:id', to: 'users#profile'
 end
