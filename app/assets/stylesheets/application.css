@@ -14,52 +14,42 @@
  *= require_self
  */
 
-body {
-  background-color: #fefefe;
-  color: #444;
-  border-color: lightgray;
-}
-
-code {
-  border-color: lightgray;
-}
-
-a:link, a:visited {
-  color: #444;
-}
-
-button {
-  color: #444;
-}
-
-button:hover {
-  background-color: #444;
-  color: #fefefe;
+:root {
+  --background: #fefefe;
+  --foreground: #444;
+  --border: lightgray;
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #444;
-    color: #fefefe;
-    border-color: lightgray;
+  :root {
+    --background: #444;
+    --foreground: #fefefe;
+    --border: lightgray;  
   }
+}
 
-  code {
-    border-color: lightgray;
-  }
 
-  a:link, a:visited {
-    color: #fefefe;
-  }
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  border-color: var(--border);
+}
 
-  button {
-    color: #fefefe;
-  }
+code {
+  border-color: var(--border);
+}
 
-  button:hover {
-    background-color: #fefefe;
-    color: #444;
-  }
+a:link, a:visited {
+  color: var(--foreground);
+}
+
+button {
+  color: var(--foreground);
+}
+
+button:hover {
+  background-color: var(--foreground);
+  color: var(--background);
 }
 
 @font-face {
