@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   root 'pages#root'
   get '/about', to: 'pages#about'
 
-  post '/login', to: 'auth#accept_email'
-  get '/login/:token_id', to: 'auth#add_cookie'
+  post '/login', to: 'auth#send_magic_link'
+  get '/login/:token_id', to: 'auth#authenticate'
 
-  get '/logout', to: 'auth#logout'
-  post '/logout', to: 'auth#remove_cookie'
+  get '/logout', to: 'auth#logout_page'
+  post '/logout', to: 'auth#logout'
 
   post '/user', to: 'users#update'
   get '/user/me', to: 'users#me'

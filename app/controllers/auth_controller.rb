@@ -1,5 +1,5 @@
 class AuthController < ApplicationController
-  def accept_email
+  def send_magic_link
     email = params[:email]
 
     u = User.find_or_create_by(email: email)
@@ -11,7 +11,7 @@ class AuthController < ApplicationController
     redirect_to :root
   end
 
-  def add_cookie
+  def authenticate
     unless emailed_token = Token.find_by_id(params[:token_id])
       raise BadAuthTokenError
     end
@@ -43,12 +43,12 @@ class AuthController < ApplicationController
     redirect_to :root
   end
 
-  def remove_cookie
+  def logout
     cookies.delete(:current_token_id)
     redirect_to :root
   end
 
-  def logout
+  def logout_page
   end
 end
 
