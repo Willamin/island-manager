@@ -12,20 +12,14 @@ class AuthController < ApplicationController
   end
 
   def authenticate
-    unless emailed_token = Token.find_by_id(params[:token_id])
-      raise BadAuthTokenError
+    unless emailed_token = Token.where(id: params[:token_id], created_at: 1.hour.ago..Time.current).first
+      flash[:alert] = "Invalid token"
+      redirect_to :root
+      return
     end
 
-    if emailed_token.is_consumed?
-      raise BadAuthTokenError
-    end
-
-    if emailed_token.created_at.before? 1.hour.ago
-      raise BadAuthTokenError
-    end
-
-    emailed_token.is_consumed = true
     user = emailed_token.user
+    emailed_token.delete
 
     new_token = Token.create(user_id: user.id)
 
@@ -38,9 +32,6 @@ class AuthController < ApplicationController
     session[:user_return_to] = nil
     flash[:notice] = "Welcome, #{user.name || user.email}"
     redirect_to(return_to || :root)
-  rescue BadAuthTokenError
-    flash[:alert] = "Invalid token"
-    redirect_to :root
   end
 
   def logout
