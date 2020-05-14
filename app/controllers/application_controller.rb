@@ -4,12 +4,7 @@ class ApplicationController < ActionController::Base
   rescue_from AuthenticationFailure, :with => :handle_auth_failure
 
   def current_user
-    token = Token.find_by(id: cookies.signed[:current_token_id])
-    if token == nil
-      return nil
-    end
-
-    if token.created_at.before? 30.days.ago
+    unless token = Token.where(id: cookies.signed[:current_token_id], created_at: 30.days.ago..Time.current).first
       return nil
     end
 
