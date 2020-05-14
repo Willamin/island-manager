@@ -18,13 +18,10 @@ class AuthController < ApplicationController
       return
     end
 
-    user = emailed_token.user
-    emailed_token.delete
+    user = emailed_token.destroy.user
 
-    new_token = Token.create(user_id: user.id)
-
-    cookies.signed[:current_token_id] = {
-     :value => new_token.id,
+    cookies.encrypted[:user_id] = {
+     :value => user.id,
      :expires => 30.days
     }
 
@@ -35,12 +32,15 @@ class AuthController < ApplicationController
   end
 
   def logout
-    cookies.delete(:current_token_id)
+    if current_user
+      cookies.delete(:user_id)
+      flash[:notice] = "Successfully logged out"
+    else
+      flash[:notice] = "Already logged out"
+    end
     redirect_to :root
   end
 
   def logout_page
   end
 end
-
-class BadAuthTokenError < StandardError; end

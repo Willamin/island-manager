@@ -4,11 +4,7 @@ class ApplicationController < ActionController::Base
   rescue_from AuthenticationFailure, :with => :handle_auth_failure
 
   def current_user
-    @current_user ||=
-      Token
-        .where(id: cookies.signed[:current_token_id], created_at: 30.days.ago..Time.current)
-        .first
-        &.user
+    @current_user ||= User.find_by(id: cookies.encrypted[:user_id])
   end
 
   def ensure_authentication
