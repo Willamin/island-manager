@@ -6,6 +6,7 @@ ruby '2.7.1'
 gem 'rails', '~> 6.0.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'jbuilder', '~> 2.7'
+gem 'rack-attack'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
