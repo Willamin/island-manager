@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_014907) do
+ActiveRecord::Schema.define(version: 2020_05_15_231747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -21,6 +21,26 @@ ActiveRecord::Schema.define(version: 2020_05_14_014907) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_tokens_on_user_id"
+  end
+
+  create_table "turnip_weeks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "sunday_am"
+    t.integer "monday_am"
+    t.integer "monday_pm"
+    t.integer "tuesday_am"
+    t.integer "tuesday_pm"
+    t.integer "wednesday_am"
+    t.integer "wednesday_pm"
+    t.integer "thursday_am"
+    t.integer "thursday_pm"
+    t.integer "friday_am"
+    t.integer "friday_pm"
+    t.integer "saturday_am"
+    t.integer "saturday_pm"
+    t.uuid "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_turnip_weeks_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

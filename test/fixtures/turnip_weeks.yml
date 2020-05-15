@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sunday_am: 1
+  monday_am: 1
+  monday_pm: 1
+  tuesday_am: 1
+  tuesday_pm: 1
+  wednesday_am: 1
+  wednesday_pm: 1
+  thursday_am: 1
+  thursday_pm: 1
+  friday_am: 1
+  friday_pm: 1
+  saturday_am: 1
+  saturday_pm: 1
+
+two:
+  sunday_am: 1
+  monday_am: 1
+  monday_pm: 1
+  tuesday_am: 1
+  tuesday_pm: 1
+  wednesday_am: 1
+  wednesday_pm: 1
+  thursday_am: 1
+  thursday_pm: 1
+  friday_am: 1
+  friday_pm: 1
+  saturday_am: 1
+  saturday_pm: 1
