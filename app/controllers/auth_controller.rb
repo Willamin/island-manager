@@ -12,7 +12,7 @@ class AuthController < ApplicationController
   end
 
   def authenticate
-    unless emailed_token = Token.where(id: params[:token_id], created_at: 1.hour.ago..Time.current).first
+    unless emailed_token = Token.find_by(id: params[:token_id], created_at: 1.hour.ago..Time.current)
       flash[:widget] = "Invalid token"
       redirect_to :root
       return
