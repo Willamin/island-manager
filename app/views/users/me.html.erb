@@ -1,21 +1,58 @@
-<h1>Profile</h1>
-
-<p>
-From here you can update your profile.
-</p>
-
 <%= form_with(url: "/user", method: "post") do %>
-  <label>Name:</label>
-  <input type="text" name="name" value="<%= @user.name %>"/>
-  <br />
+  <div class="card">
+    <div class="card-body">
+      <% if @user.name.blank? %>
+        <h1>Profile</h1>
+      <% else %>
+        <h1><%= @user.name %>'s Profile</h1>
+      <% end %>
+      <p>
+        From here you can update your profile.
+      </p>
 
-  <label>Island Name:</label>
-  <input type="text" name="island_name" value="<%= @user.island_name %>"/>
-  <br />
+      <% %w(name island_name character_name).each do |fieldname| %>
+        <label style="display: none;" for="<%= fieldname %>"><%= fieldname.titlecase %></label>
+        <input type="text" placeholder="<%= fieldname.titlecase %>" name="<%= fieldname %>" value="<%= @user.send(fieldname.to_sym) %>"/>
+      <% end %>
 
-  <label>Character Name:</label>
-  <input type="text" name="character_name" value="<%= @user.character_name %>"/>
-  <br />
+      <button class="card-button" type="submit">Save</button>
+    </div>
+  </div>
+<% end %>
 
-  <button type="submit">Save</button>
+<%= form_with(url: "/turnips/now", method: "post") do %>
+  <div class="card">
+    <div class="card-body">
+      <h1>Turnips</h1>
+      <p>
+        Turnips are a great way to build wealth. You can purchase them on Sundays before noon and can sell them Monday through Saturday while the shop is open. The buying price and the selling prices vary such that you can quickly build a profit on your own island – however, this risky manuever can leave you with worthless rotten turnips after Saturday.
+      </p>
+      <p>
+        To mitigate that risk, you can share the price of turnips each day with friends and they can share their prices with you. By widening the pool of buyers and sellers, the ability for you to find an island that is buying turnips for a high price greatly increases. This part of Island Manager can help you notify your friends of your prices and vice versa.
+      </p>
+      <p>
+        Some island residents have and use an ability to time travel in order to find beneficial turnip prices. However, this tool was designed around players that are <em>not</em> time traveling and using this tool at the same time.
+      </p>
+
+      <hr/>
+
+      <h2>This week</h2>
+
+      <% %w(monday tuesday wednesday thursday friday, saturday).each do |day| %>
+      <div style="display: flex; justify-content: space-between;">
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <input class="no-spin short leading" min="0" max="999" type="number" placeholder="Price" name="price" value="<%= @todays_price %>"/>
+          <span class="trailing bell-unit">⍟</span>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <input class="no-spin short leading" min="0" max="999" type="number" placeholder="Price" name="price" value="<%= @todays_price %>"/>
+          <span class="trailing bell-unit">⍟</span>
+        </div>
+      </div>
+      <% end %>
+
+      <button class="card-button" type="submit">Save</button>
+    </div>
+  </div>
 <% end %>

@@ -14,13 +14,25 @@
  *= require_self
  */
 
+ /* reset */
+/*p {
+  margin-block-start: 0;
+  margin-block-end: 1em;
+}
+
+p:last-of-type {
+  margin-block-end: 0;
+}
+
  :root {
-  --bg-0: #e9f5eb;
+  --bg-0: #EBF4EC;
   --bg-1: #d8f1e1;
-  --bg-2: #a5d5a5;
+  --bg-2: #97C7A4;
+  --bg-3: #F8F8F0;
 
   --fg-1: rgba(0, 0, 0, 0.9);
   --fg-2: rgba(0, 0, 0, 0.9);
+  --fg-3: rgba(0, 0, 0, 0.9);
 
   --widget-0: #ef8341;
   --widget-1: rgba(0, 0, 0, 0.9);
@@ -38,9 +50,11 @@
   --bg-0: #7b6c53;
   --bg-1: #9a8e79;
   --bg-2: #aca391;
+  --bg-3: #F8EEBC;
 
   --fg-1: rgba(0, 0, 0, 0.9);
   --fg-2: rgba(0, 0, 0, 0.9);
+  --fg-3: rgba(0, 0, 0, 0.9);
 
   --widget-0: #ef8341;
   --widget-1: rgba(0, 0, 0, 0.9);
@@ -53,107 +67,6 @@
 
   --accent: #FDD10A;
 } }
-
-.level-0 {
-  background-color: var(--bg-0);
-}
-
-.level-1 {
-  background-color: var(--bg-1);
-  color: var(--fg-1);
-  border-color: var(--fg-1);
-}
-
-.level-2 {
-  background-color: var(--bg-2);
-  color: var(--fg-2);
-  border-color: var(--fg-2);
-}
-
-/* ------------------------------------ */
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-main {
-  line-height: 1.6em;
-  font-size: 16px;
-  font-family: sans-serif, OpenMoji;
-  padding: 2em;
-  padding-top: 1.5em;
-  border-radius: 10px;
-  margin: 2em auto 30vh;
-  max-width: 800px;
-  transition: margin 0.1s;
-}
-
-@media (max-width: calc(800px + 4em)) {
-  main {
-    margin-top: 0;
-    border-radius: 0;
-  }
-}
-
-code {
-  border-color: var(--fg-1);
-}
-
-a:link, a:visited {
-  color: var(--foreground);
-}
-
-a:hover::before {
-  background-color: var(--accent);
-}
-
-button {
-  border-color: var(--border);
-  color: var(--foreground);
-}
-
-button:hover {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-
-@font-face {
-  font-family: OpenMoji;
-  src: url(OpenMoji-Black.ttf);
-}
-
-h1, h2, h3 {
-  line-height: 1.2;
-  margin: 0;
-  font-family: "Zilla Slab", OpenMoji, serif;
-}
-
-code {
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 5px;
-  padding: 2px 8px;
-  overflow-x: scroll;
-}
-
-pre > code {
-  display: block;
-}
-
-button {
-  background-color: var(--accent);
-  border: none;
-  border-radius: 5px;
-  padding: 0.5em 1em;
-  font-size: 16px;
-  font-family: sans-serif, OpenMoji;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: var(--accent);
-}
 
 .flash {
   font-family: sans-serif, OpenMoji;

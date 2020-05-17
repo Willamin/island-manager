@@ -1,5 +1,21 @@
-Name: <%= @user.name %>
-<br />
-Island: <%= @user.island_name %>
-<br />
-Character: <%= @user.character_name %>
+<div class="card">
+  <div class="card-body">
+    <% if @user.name.blank? %>
+      <h1>Profile</h1>
+    <% else %>
+      <h1><%= @user.name %>'s Profile</h1>
+    <% end %>
+    <div style="margin: 1em">
+      <span class="leading">Name</span>
+      <span class="trailing"><%= @user.name.blank? ? "not set" : @user.name %></span>
+    </div>
+    <div  style="margin: 1em">
+      <span class="leading">Island</span>
+      <span class="trailing"><%= @user.island_name.blank? ? "not set" : @user.island_name %></span>
+    </div>
+    <div  style="margin: 1em">
+      <span class="leading">Character</span>
+      <span class="trailing"><%= @user.character_name.blank? ? "not set" : @user.character_name %></span>
+    </div>
+  </div>
+</div>

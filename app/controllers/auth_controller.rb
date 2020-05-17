@@ -2,8 +2,23 @@ class AuthController < ApplicationController
   def send_magic_link
     email = params[:email]
 
-    u = User.find_or_create_by(email: email)
-    t = u.create_token
+    user = User.find_or_create_by(email: email)
+
+    if Rails.env.development?
+      if email.ends_with?("islandmanager.com")
+        if user
+          flash[:dingus] = "You're in development, so you are now logged in as #{email}"
+          cookies.encrypted[:user_id] = {
+            :value => user.id,
+            :expires => 30.days
+          }
+          redirect_to :root
+          return
+        end
+      end
+    end
+
+    t = user.create_token
 
     TokenMailer.with(token: t).login_email.deliver_now
 

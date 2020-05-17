@@ -1,22 +1,48 @@
-<h1>Island Manager</h1>
-<p>
-  Currently implemented features:
-  <ul>
-    <li>Static pages: <a href="/">root</a>, <a href="/about">about</a></li>
-    <li><a href="/user/me">user profile</a></li>
-  </ul>
-</p>
+<div class="card">
+  <div class="card-body">
+    <h1>Island Manager</h1>
+    <p>
+      Deserted island life can be tough to manage, 
+      and we're here to help.
+    </p>
+    <% unless current_user.nil? %>
+      <p>
+        To help others know who you are, fill out your profile.
+      </p>
+      <a class="card-button" href="/user/me">Your Profile</a>
+    <% end %>
+  </div>
+</div>
 
-<%= form_with(url: "/login", method: "post") do %>
-  <p>Login with your email</p>
-  <label for="email">Email</label>
-  <input required type="email" name="email" id="email" />
-  <br />
-  <button type="submit">Login</button>
+<% if current_user.nil? %>
+  <%= form_with(url: "/login", method: "post") do %>
+    <div class="card">
+      <div class="card-body">
+        <p>
+          You can login or create an account with your email address. You'll receive an email with a special link to sign in.
+        </p>
+        <label style="display: none;" for="email">Email</label>
+        <input required type="email" name="email" id="email" placeholder="you@email.com" />
+        <button class="card-button" type="submit">Login</button>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <%= form_with(url: "/logout", method: "post") do %>
+    <div class="card"><div class="card-body">
+      <p>
+        Looks like you're logged in. You can log out with the button below.
+      </p>
+      <button class="card-button" type="submit">Logout</button>  
+    </div></div>
+  <% end %>
 <% end %>
 
-<br />
-
-<%= form_with(url: "/logout", method: "post") do %>
-  <button type="submit">Logout</button>
+<% if false # wait until more features %>
+<div class="card">
+  <div class="card-body">
+    <h2>Links</h2>
+    <a class="card-button" href="/user/me">Your Profile</a>
+  </div>
+</div>
 <% end %>

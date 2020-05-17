@@ -12,9 +12,13 @@
 
   <body class="level-0">
     <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
+    <div class="card">
+      <div class="card-body">
+        <%= value %>
+      </div>
+    </div>
     <% end %>
-    <main class="level-1">
+    <main>
     <%= yield %>
     </main>
   </body>
