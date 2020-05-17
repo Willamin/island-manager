@@ -132,13 +132,24 @@ span.bell-unit {
 }
 
 input.short {
-  width: 100px;
+  width: 50px;
 }
 
 input.no-spin::-webkit-outer-spin-button,
 input.no-spin::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+input:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+input:disabled::placeholder {
+  color: transparent;
+}
+input:disabled.leading ~ span.trailing {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: transparent;
 }
 
 .card-body hr {

@@ -9,13 +9,27 @@
       <span class="leading">Name</span>
       <span class="trailing"><%= @user.name.blank? ? "not set" : @user.name %></span>
     </div>
-    <div  style="margin: 1em">
+    <div style="margin: 1em">
       <span class="leading">Island</span>
       <span class="trailing"><%= @user.island_name.blank? ? "not set" : @user.island_name %></span>
     </div>
-    <div  style="margin: 1em">
+    <div style="margin: 1em">
       <span class="leading">Character</span>
       <span class="trailing"><%= @user.character_name.blank? ? "not set" : @user.character_name %></span>
     </div>
+    <% unless @turnips.nil? %>
+      <% %w(sunday monday tuesday wednesday thursday friday saturday).each_with_index do |day, index| %>
+      <div style="margin: 1em; display: flex; justify-content: center;">
+        <span style="display: inline-block; flex-grow: 1; text-align: right;" class="leading"><%= day.titlecase %> AM</span>
+        <% am = @turnips.send(day + "_am") %>
+        <span style="display: inline-block; flex-grow: 0; width: 100px;" class="trailing"><%= am.blank? ? "&nbsp;".html_safe : am %></span>
+      </div>
+      <div style="margin: 1em; display: flex; justify-content: center;">
+        <span style="display: inline-block; flex-grow: 1; text-align: right;" class="leading"><%= day.titlecase %> PM</span>
+        <% pm = (day != "sunday" ? @turnips.send(day + "_pm") : "n/a") %>
+        <span style="display: inline-block; flex-grow: 0; width: 100px;" class="trailing"><%= pm.blank? ? "&nbsp;".html_safe : pm %></span>
+      </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   post '/user', to: 'users#update'
   get '/user/me', to: 'users#me'
   get '/user/:id', to: 'users#profile'
+
+  post '/turnips/current', to: 'users#update_current_turnips'
 end

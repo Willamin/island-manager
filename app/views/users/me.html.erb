@@ -19,8 +19,7 @@
     </div>
   </div>
 <% end %>
-
-<%= form_with(url: "/turnips/now", method: "post") do %>
+<%= form_with(url: "/turnips/current", method: "post") do %>
   <div class="card">
     <div class="card-body">
       <h1>Turnips</h1>
@@ -34,25 +33,37 @@
         Some island residents have and use an ability to time travel in order to find beneficial turnip prices. However, this tool was designed around players that are <em>not</em> time traveling and using this tool at the same time.
       </p>
 
+      <% unless @turnips.nil? %>
       <hr/>
-
       <h2>This week</h2>
-
-      <% %w(monday tuesday wednesday thursday friday, saturday).each do |day| %>
-      <div style="display: flex; justify-content: space-between;">
-        <div style="display: flex; align-items: center; justify-content: center;">
-          <input class="no-spin short leading" min="0" max="999" type="number" placeholder="Price" name="price" value="<%= @todays_price %>"/>
-          <span class="trailing bell-unit">⍟</span>
+      
+        <% %w(sunday monday tuesday wednesday thursday friday saturday).each_with_index do |day, index| %>
+        <div style="display: flex; justify-content: space-around; margin-bottom: 0.25em;">
+          <div>
+            <% if index == 0 %>AM<% end %>
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <input class="no-spin short leading" min="0" max="999" type="number" 
+              placeholder="<%= day.titlecase[0..2] %>" 
+              name="<%= day + "_am" %>" 
+              value="<%= @turnips.send(day + "_am") %>"/>
+              <span class="trailing bell-unit">⍟</span>
+            </div>
+          </div>
+          <div>
+            <% if index == 0 %>PM<% end %>
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <input class="no-spin short leading" min="0" max="999" type="number" 
+              placeholder="<%= day.titlecase[0..2] %>" 
+              name="<%= day + "_pm" %>" 
+              value="<%= day == "sunday" ? "" : @turnips.send(day + "_pm") %>" <%= if (day == "sunday") then "disabled" end %>/>
+              <span class="trailing bell-unit">⍟</span>
+            </div>
+          </div>
         </div>
+        <% end %>
 
-        <div style="display: flex; align-items: center; justify-content: center;">
-          <input class="no-spin short leading" min="0" max="999" type="number" placeholder="Price" name="price" value="<%= @todays_price %>"/>
-          <span class="trailing bell-unit">⍟</span>
-        </div>
-      </div>
+        <button class="card-button" type="submit">Save</button>
       <% end %>
-
-      <button class="card-button" type="submit">Save</button>
     </div>
   </div>
 <% end %>
